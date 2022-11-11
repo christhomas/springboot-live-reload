@@ -1,0 +1,14 @@
+{
+    "network": {
+        "host": "springboot.develop"
+    },
+    "scripts": {
+        "build": "docker compose build",
+        "delete-containers": "docker compose rm -f",
+        "rebuild": ["stop", "delete-containers", "build"],
+        "start": "docker compose up -d",
+        "stop": "docker compose stop",
+        "restart": ["stop", "start"],
+        "logs": "docker compose logs -f"
+    }
+}
