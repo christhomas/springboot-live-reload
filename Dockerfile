@@ -1,4 +1,4 @@
-FROM maven:3.8.5-openjdk-11 AS maven
+FROM maven:3.8.5-eclipse-temurin-16 AS dev
 
 RUN apt update && apt install -y supervisor
 COPY ./supervisord.conf /etc/supervisord.conf
