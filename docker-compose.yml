@@ -6,9 +6,14 @@ networks:
   public:
     name: ${PUBLIC_NETWORK:-public}
 
+volumes:
+ database:
+
 services:
   database:
-    image: postgres:11
+    image: postgres:13
+    volumes:
+      - database:/var/lib/postgresql
     networks:
       - private
     ports:
