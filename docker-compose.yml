@@ -1,18 +1,38 @@
 version: '3.9'
 
 networks:
+  private:
+    name: ${PRIVATE_NETWORK:-private}
   public:
     name: ${PUBLIC_NETWORK:-public}
 
 services:
+  database:
+    image: postgres:11
+    networks:
+      - private
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=supersecretpassword
+
   app:
+    image: springboot-live-reload:latest
     build: 
       dockerfile: Dockerfile
       context: .
     networks:
       - public
+      - private
+    depends_on:
+      - database
     volumes:
       - $PWD:/app
     environment:
       - VIRTUAL_HOST=springboot.develop
       - VIRTUAL_PORT=8080
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=supersecretpassword
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
