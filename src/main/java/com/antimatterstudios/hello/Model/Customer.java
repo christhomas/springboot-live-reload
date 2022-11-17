@@ -6,15 +6,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Type;
-
 @Entity
 @Table(name = "customer")
 public class Customer {
     @Id
     @GeneratedValue
-    @Type(type="org.hibernate.type.UUIDCharType")
-    private String id;
+    private java.util.UUID id;
     
     @Column(name = "first_name", nullable = false)
     private String firstName;
@@ -26,11 +23,11 @@ public class Customer {
         super();
     }
 
-    public String getId() {
+    public java.util.UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(java.util.UUID id) {
         this.id = id;
     }
 

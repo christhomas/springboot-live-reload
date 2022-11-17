@@ -28,7 +28,7 @@ public class CustomerService {
         return repository.save(customer);
     }
 
-    public Customer getCustomerById(String id) {
+    public Customer getCustomerById(java.util.UUID id) {
         return repository.findById(id).orElse(null);
     }
 
@@ -46,7 +46,7 @@ public class CustomerService {
         }
     }
 
-    public String deleteCustomerById(String id) {
+    public String deleteCustomerById(java.util.UUID id) {
         repository.deleteById(id);
         return "Customer "+ id + " deleted";
     }

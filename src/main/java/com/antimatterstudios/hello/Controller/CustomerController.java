@@ -38,7 +38,7 @@ public class CustomerController {
     }
 
     @DeleteMapping("/customer/{id}")
-    public HttpStatus deleteUser(@PathVariable String id) {
+    public HttpStatus deleteUser(@PathVariable java.util.UUID id) {
         customerService.deleteCustomerById(id);
         return HttpStatus.OK;
     }
